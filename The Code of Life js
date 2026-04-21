@@ -1,0 +1,57 @@
+let questions = [
+  {
+    question: "What is the basic unit of life?",
+    options: ["Atom", "Cell", "Tissue"],
+    answer: "Cell"
+  },
+  {
+    question: "DNA stands for?",
+    options: [
+      "Deoxyribo Nucleic Acid",
+      "Deoxyribonucleic Acid",
+      "Dinuclear Acid"
+    ],
+    answer: "Deoxyribonucleic Acid"
+  },
+  {
+    question: "Which organelle is called the powerhouse of the cell?",
+    options: ["Nucleus", "Mitochondria", "Ribosome"],
+    answer: "Mitochondria"
+  }
+];
+
+let currentQ = 0;
+let score = 0;
+
+function loadQuestion() {
+  document.getElementById("question").innerText =
+    questions[currentQ].question;
+
+  let btns = document.getElementsByClassName("option");
+
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].innerText = questions[currentQ].options[i];
+  }
+}
+
+function checkAnswer(i) {
+  if (
+    questions[currentQ].options[i] ===
+    questions[currentQ].answer
+  ) {
+    score++;
+  }
+
+  currentQ++;
+
+  if (currentQ < questions.length) {
+    loadQuestion();
+  } else {
+    document.getElementById("question").innerText =
+      "Game Over! Your Score: " + score;
+
+    document.getElementById("options").style.display = "none";
+  }
+}
+
+window.onload = loadQuestion;
